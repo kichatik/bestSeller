@@ -8,21 +8,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to BestSeller API" });
-});
-
-require('./routes/userRoute')(app); 
-require('./routes/rentRoute')(app);
-require('./routes/itemRoute')(app);
-require('./routes/comentRoute')(app); 
-require('./routes/ratingRoute')(app); 
-require('./routes/authRoute')(app);
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-const PORT = process.env.PORT || 3000;
+require('./routes/userRoute.js')(app); 
+require('./routes/rentRoute.js')(app);
+require('./routes/itemRoute.js')(app);
+require('./routes/comentRoute.js')(app); 
+require('./routes/ratingRoute.js')(app); 
+require('./routes/authRoute.js')(app);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
