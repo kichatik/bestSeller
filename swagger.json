@@ -1,0 +1,60 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "BestSeller API",
+    "description": "API для аренды вещей"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Регистрация пользователя",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно зарегистрирован"
+          },
+          "400": {
+            "description": "Ошибка валидации"
+          },
+          "500": {
+            "description": "Ошибка сервера"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Имя пользователя, уникальное значение"
+        },
+        "password": {
+          "type": "string",
+          "description": "Пароль пользователя, не менее 8 символов"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Адрес электронной почты пользователя"
+        }
+      },
+      "required": ["username", "password", "email"]
+    }
+  }
+}
